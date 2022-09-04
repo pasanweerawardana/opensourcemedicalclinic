@@ -10,7 +10,7 @@
 <?import javafx.scene.text.Font?>
 
 
-<AnchorPane prefHeight="288.0" prefWidth="585.0" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.LogInFormController">
+<AnchorPane prefHeight="288.0" prefWidth="585.0" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="lk.ijse.dep9.controller.LoginFormController">
    <children>
       <Label layoutX="102.0" layoutY="41.0" text="Log In to Open Source Medical Clinic">
          <font>
