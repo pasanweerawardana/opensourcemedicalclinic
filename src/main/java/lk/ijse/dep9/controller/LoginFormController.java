@@ -8,6 +8,7 @@ import javafx.scene.control.Button;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
+import lk.ijse.dep9.misc.CryptoUtil;
 
 import java.io.IOException;
 import java.sql.*;
@@ -50,13 +51,19 @@ public class LoginFormController {
 //            Statement stm = connection.createStatement();
 //            ResultSet rst = stm.executeQuery(sql);
 
-            String sql="SELECT role FROM User WHERE username=? AND password=?";
+            String sql="SELECT role,password FROM User WHERE username=?";
             PreparedStatement stm = connection.prepareStatement(sql);
             stm.setString(1,username);
-            stm.setString(2,password);
             ResultSet rst = stm.executeQuery();
 
             if (rst.next()){
+                String ciperText = rst.getString("password");
+                if (!CryptoUtil.getSha256Hex(password).equals(ciperText)){
+                    new Alert(Alert.AlertType.ERROR,"Invalid login credentials").show();
+                    txtUser.requestFocus();
+                    txtUser.selectAll();
+                    return;
+                }
                 String role= rst.getString("role");
                 Scene scene=null;
                 switch (role){
